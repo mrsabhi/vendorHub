@@ -1,5 +1,4 @@
 from django.db import models
-
 from authentications.models import User
 
 
@@ -12,8 +11,9 @@ class VendorAccounts(models.Model):
     shop_name = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
+    is_vendor = models.BooleanField(default=True, null=True)
     pin_code = models.IntegerField()
-    is_vendor = models.BooleanField(default=False)
+    gstin = models.CharField(max_length=255, null=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 

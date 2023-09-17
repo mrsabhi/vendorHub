@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
 
 from authentications.models import User
 from authentications.serializer import RegistrationSerializer, LoginSerializer
@@ -12,6 +12,7 @@ from authentications.serializer import RegistrationSerializer, LoginSerializer
 # Create your views here.
 
 class RegistrationView(APIView):
+    permission_classes = [AllowAny]
 
     def get(self, request):
         user = User.objects.all()
@@ -43,7 +44,8 @@ class LoginView(APIView):
             # https: // docs.djangoproject.com / en / 4.2 / topics / auth / default /  # user-objects
             user = authenticate(email=email, password=password)
             if user is not None:
-                return Response({"message": "user login", }, status=status.HTTP_200_OK)
+                login(requset, user)
+                return Response({"message": "user login"}, status=status.HTTP_200_OK)
             else:
                 return Response({"message": "invalid email id or password"}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

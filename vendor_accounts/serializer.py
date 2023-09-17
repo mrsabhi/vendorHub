@@ -8,6 +8,6 @@ class VendorAccountSerializer(serializers.ModelSerializer):
         model = VendorAccounts
         fields = [
             "vendor_name", "vendor_email", "vendor_phone_number", "shop_name",
-            "state", "address", "pin_code", "is_vendor",
+            "state", "address", "gstin", "pin_code",
             "created_at", "updated_at",
         ]

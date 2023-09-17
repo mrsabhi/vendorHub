@@ -8,7 +8,7 @@ from vendor_accounts.models import VendorAccounts
 class VendorAccountsAdmin(admin.ModelAdmin):
     list_display = [
         "vendor_name", "vendor_email", "vendor_phone_number", "shop_name",
-        "state", "address", "pin_code", "is_vendor",
+        "state", "address", "is_vendor", "gstin", "pin_code",
         "created_at", "updated_at",
     ]
-    search_fields = ["email","vendor_name"]
+    search_fields = ["email", "vendor_name"]

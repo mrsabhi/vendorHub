@@ -1,9 +1,7 @@
 from django.contrib.auth import authenticate
-from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from authentications.models import User
 from vendor_accounts.models import VendorAccounts
 from vendor_accounts.serializer import VendorAccountSerializer
@@ -17,13 +15,13 @@ class VendorAccountsView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        print(request.user)
+        print(request.user,"jay mata di")
         serializer = VendorAccountSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             email = request.data.get("vendor_email")
             user = User.objects.get(email=email)
             if user is not None:
-                if user.is_vendor == False:
+                if not user.is_vendor:
                     user.is_vendor = True
                     user.save()
                     serializer.save()
@@ -31,7 +29,7 @@ class VendorAccountsView(APIView):
                                      "msg": "is vendor becomes true"},
                                     status=status.HTTP_200_OK)
                 else:
-                    return Response({"msg": "try again"},
+                    return Response({"msg": "try again","status":"You are already vendor "},
                                     status=status.HTTP_400_BAD_REQUEST)
             else:
                 return Response({"msg": "user does not exist"},

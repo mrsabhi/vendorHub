@@ -14,6 +14,7 @@ class VendorAccounts(models.Model):
     is_vendor = models.BooleanField(default=True, null=True)
     pin_code = models.IntegerField()
     gstin = models.CharField(max_length=255, null=True)
+    vendor_photo = models.ImageField(upload_to="vendor/photo", null=True)
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 

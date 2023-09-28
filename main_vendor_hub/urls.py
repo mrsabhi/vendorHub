@@ -24,6 +24,8 @@ urlpatterns = [
     path("api/user/", include("authentications.urls")),
     path("api/user/", include("vendor_accounts.urls")),
     path("api/user/", include("products.urls")),
+    path("api/user/", include("accounts.urls")),
+    path("api/user/", include("contacts.urls")),
 ]
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

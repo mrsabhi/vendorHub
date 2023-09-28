@@ -14,9 +14,7 @@ SECRET_KEY = 'django-insecure-nq4(w+6!*4$&%f(xvcv8twpmi3j7x5*!s#%==0&qw(ijft*5_q
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "http://localhost:3000/",
     "http://127.0.0.1/",
-    "http://127.0.0.1:3000/",
     '127.0.0.1:1991',
     'localhost',
     '127.0.0.1'
@@ -36,34 +34,28 @@ INSTALLED_APPS = [
     'vendor_accounts',
     'products',
     "corsheaders",
+    'accounts',
+    'contacts',
 
 ]
-# CORS_ORIGIN_WHITELIST = [
-#     "http://localhost:3000/",
-#     "http://127.0.0.1/",
-#     "http://127.0.0.1:3000/",
-# ]
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000/",
-#     "http://127.0.0.1/",
-#     "http://127.0.0.1:3000/",
-# ]
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 CORS_ALLOW_METHODS = [
     "DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT",
 ]
 
-VPSTORAGE_API_KEY = "0523d5d840408df1159e9ab38a796849b479e7c284a5b33c28efa07a6ae8908e"
-
-STORAGES = {
-    "default": {
-        "BACKEND": "virtualpreference.storage.django.VPBucket"
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}
+# VPSTORAGE_API_KEY = "0523d5d840408df1159e9ab38a796849b479e7c284a5b33c28efa07a6ae8908e"
+#
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "virtualpreference.storage.django.VPBucket"
+#     },
+#     "staticfiles": {
+#         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+#     },
+# }
 
 AUTH_USER_MODEL = "authentications.User"
 
@@ -151,22 +143,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # -------------------------------------------------
 #
 #
-REST_FRAMEWORK = {
-    # enable session authentication for app
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-    ],
-    # enable is authentication permission
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    # display render joson
-    # 'DEFAULT_RENDERER_CLASSES': [
-    #     'rest_framework.renderers.JSONRenderer',
-    # ]
-}
-# # Url to serv media file
-# MEDIA_URL = "/media/"
-#
-# # where media store
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# REST_FRAMEWORK = {
+#     # enable session authentication for app
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.SessionAuthentication',
+#     ],
+#     # enable is authentication permission
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ],
+#     # display render joson
+#     # 'DEFAULT_RENDERER_CLASSES': [
+#     #     'rest_framework.renderers.JSONRenderer',
+#     # ]
+# }
+# Url to serv media file
+MEDIA_URL = "/media/"
+
+# where media store
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

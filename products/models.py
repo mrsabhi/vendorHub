@@ -15,7 +15,7 @@ class Products(models.Model):
     vendor = models.ForeignKey(VendorAccounts, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     product_name = models.CharField(max_length=255)
-    thumbnail = models.FileField()
+    thumbnail = models.ImageField(upload_to="product/thumbnail")
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
